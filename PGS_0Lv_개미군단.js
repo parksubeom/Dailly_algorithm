@@ -18,8 +18,8 @@ hp가 999이므로, 장군개미 199 마리 병정개미 한마리 일개미 한
  */
 
 function solution(hp) {
-    const first = Math.floor(hp / 5)
-    const second = Math.floor((hp - first * 5)/3)
-    const third = hp - first * 5 - second * 3;
+    const first = Math.floor(hp / 5) // hp를 안넘기는 선에서 최대한 장군개미가 많이나가야한다.
+    const second = Math.floor((hp - first * 5)/3) // hp를 안넘기는 선에서 남은 hp를 병정개미로 최대한 처리해야한다.
+    const third = hp - first * 5 - second * 3; // hp가 3미만이라면 일개미가 처리한다.
     return first+second+third
   }
