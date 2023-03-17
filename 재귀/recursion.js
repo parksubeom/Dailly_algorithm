@@ -18,5 +18,6 @@ function recursionpow(x, n) { // => 거듭제곱을 구하는 함수
     }
 }
 
+console.log(recursionpow(2, 3))
 
-console.log(recursionpow(2,10))
+2 * 2 * 2
