@@ -14,13 +14,12 @@ function solution(N, stages) {
     //현재 머물러있는 스테이지 : stages
     // 6은 다 클리어 한 유저.
 
-    let result = [];
-    for(let i=1; i<=N; i++){
-        let clear = stages.filter((x) => x >= i).length; // i스테이지를 클리어 한 사람
-        let challenger = stages.filter((x) => x === i).length; // i스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수
-        result.push([i, challenger/ clear]); // 실패율은 curr/reach
+    let result = []
+    for(let stage = 1; stage <= N; stage++){
+        let clear = stages.filter(el => el >= stage).length // 해당 스테이지를 클리어한 사람의 수
+        let challenger = stages.filter(el => el === stage).length // 해당 스테이지에 도달했지만 클리어 하지 못한 사람.
+        result.push([stage,challenger/clear])        
     }
-    result.sort((a,b) => b[1] - a[1]); // 스테이지와 해당스테이지의 실패율이 담긴 배열을 내림차순 정렬한다
-    // 이유는 "만약 실패율이 같은 스테이지가 있다면 작은 번호의 스테이지가 먼저 오도록 하면 된다."
-    return result.map((x) => x[0]); //맵을 돌며서 해당 실패율이 높은 스테이지를 뽑아 배열로 만든다.
+       result.sort((a,b) => b[1]-a[1])
+    return result.map((el) => el = el[0])
 }
