@@ -5,7 +5,7 @@ function solution(ingredient) {
     for(let i = 0; i < ingredient.length; i++){
         stack.push(ingredient[i])
         if(stack.length > 0 && stack.slice(-4).join('') === '1231'){
-            stack.spice(-4)
+            stack.splice(-4)
              cnt++     
         }
     }
