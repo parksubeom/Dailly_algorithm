@@ -1,27 +1,40 @@
-/*
- 하나의 집합을 의미하는 문자열을 입력받아
-  각 문자를 가지고 만들 수 있는 모든 부분집합을 리턴해야 합니다.
- */
+const powerSet = function (str) {
+  //arr[i]는 알파벳 순서로 정렬되어야 합니다 => 배열정렬(오름차순)
+  //집합은 중복된 원소를 허용하지 않습니다. => 중복제거
+  //부분집합은 빈 문자열을 포함합니다. => 재귀함수 첫 인자로 빈문자열 주고 result에 삽입
+  let sortstr = [...new Set([...str].sort())] // 중복제거 후 알파벳 순서 정렬
+  let result = []; // 부분집합 담을 빈배열
 
-  const powerSet = function (str) {
-    //arr[i]는 알파벳 순서로 정렬되어야 합니다 => 배열정렬(오름차순)
-    //집합은 중복된 원소를 허용하지 않습니다. => 중복제거
-    //부분집합은 빈 문자열을 포함합니다. => 배열 맨 앞에 빈문자열 삽입
-    let sortstr = [...new Set(['',...str].sort())]
-    let result = [];
-  
-     const subset = (idx, el) => {
-      // base case
-      if (idx === sortstr.length) {
-        result.push(el);
-        return;
-      }
-      subset(idx + 1, el);
-      subset(idx + 1, el + sortstr[idx]);
-    };
-    
-    subset(0, '');
-    return [...new Set(result.sort())]
+   const subset = (idx, el) => { // 부분집합 리턴하는 재귀함수
+    // base case
+     if (idx === sortstr.length) { // 배열 끝까지 까지 탐색한경우
+      result.push(el); // 
+      return result
+    }
+    //idx번째 문자가 포함되지 않는 경우
+    subset(idx + 1, el); //  1 '' 2'' 3''
+    // idx번째 문자가 포함되는 경우
+    subset(idx + 1, el + sortstr[idx]);// 1 a 2 b 3 c
   };
-   
   
+  subset(0, "");
+
+  return [...new Set(result)]
+};
+
+powerSet('abc')
+
+/*
+   const powerSet = function (str) {
+    let arr = [...new Set(str)].sort();
+    if (arr.length === 1) return [""].concat(arr);
+    let last = arr.pop();
+    let lastArr = powerSet(arr).map((x) => x + last);
+    return powerSet(arr).concat(lastArr).sort();
+}
+
+powerSet('abc')
+
+
+ */
+//["",c,b,bc,a,ac,ab,abc]
