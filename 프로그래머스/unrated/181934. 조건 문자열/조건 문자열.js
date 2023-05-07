@@ -1,8 +1,4 @@
 function solution(ineq, eq, n, m) {
-    if((ineq === '>'&& eq === '=' && n >= m) || (ineq === '<'&& eq === '=' && n <= m)){
-        return 1
-    } if((ineq === '>'&& eq === '!' && n > m) || (ineq === '<'&& eq === '!' && n < m)){
-        return 1   
-    }
-    return 0
+    var answer = 0;
+    return answer;
 }
