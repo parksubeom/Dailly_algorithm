@@ -21,12 +21,11 @@ function solution(bridge_length, weight, truck_weights) {
     }
     return 최대트럭수 + 1*/
     
+    //==========================================
     //출차가 먼저
     //입차가 그 다음 순서
     //다리를 건너는 차량의 무게 > 다리하중 => 맨 앞의 차량 출차
     //최대 무게를 넘지않을동안 입차시킴
-    
-    
     //다리를 건너는 트럭의 무게와 위치를저장.
     let bridge = [];
     let total_weight = 0;
@@ -51,5 +50,5 @@ function solution(bridge_length, weight, truck_weights) {
             total_weight += truck_weight;
         }
     }
-    return time
+    return time   
 }
