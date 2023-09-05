@@ -1,5 +1,4 @@
 function solution(food) {
-    let result = [0]
     let onlyfood = food.slice(1)
     let answer = ''
     for(let i = 1; i < food.length; i++){
