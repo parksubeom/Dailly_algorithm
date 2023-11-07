@@ -4,10 +4,8 @@ function solution(arr, queries) {
     for(let el of  queries){
         const [s,e,k] = el
         for(let i =0; i< arr.length; i++){
-            if(s <= i && e >= i){
-                if(i%k === 0){
-                    arr[i] = arr[i]+1
-                }
+            if(s <= i && e >= i && i%k === 0){
+                arr[i] = arr[i]+1
             }
         }
     }
