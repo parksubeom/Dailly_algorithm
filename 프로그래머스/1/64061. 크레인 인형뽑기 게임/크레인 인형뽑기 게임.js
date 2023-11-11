@@ -8,12 +8,14 @@ function solution(board, moves) {
   let newboard = [];
   let arr = [];
   let result = [];
-  let width = board.length;
   let cnt = 0;
   //빈칸을 제거한 뉴보드생성
-  for (let i = 0; i < width; i++) {
-    for (let y = 0; y < width; y++) {
-      if (arr.length === width) {
+  for (let i = 0; i < board.length;
+  i++) {
+    for (let y = 0; y < board.length;
+  y++) {
+      if (arr.length === board.length
+ ) {
         newboard.push(arr);
         arr = [];
       }
