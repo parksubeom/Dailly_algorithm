@@ -8,9 +8,9 @@ function solution(fees, records) {
 3. 번호판을 순회하며, 해당 번호판의 출입시간을 구한다.
 4. 출입시간을 내림차순 정렬했을 떄, 홀수면 최대시간 - 첫번째 요소 / 짝수면 짝수요소 - 홀수요소 가 누적주차시간
 */
-    let result = []
+    let 출입기록 = []
+    let 누적주차시간 = []
     let answer = []
-    let lastanswer = []
     let 최대시간 = 1439
     let 기본시간 = fees[0]
     let 기본요금 = fees[1]
@@ -37,30 +37,28 @@ function solution(fees, records) {
     for(let i = 0; i < numbers.length; i++){
         let matchlist = newrecords.filter(el => el[1] ===numbers[i])
         for(let el of matchlist){
-            result.push(el[0])
+            출입기록.push(el[0])
         }
-        result.sort((a,b) => b -a)
-        //console.log(result.sort((a,b) => b -a))
-        if(result.length %2 === 1){ // 길이 홀수면 아웃안한거
+       출입기록.sort((a,b) => b -a)
+        if(출입기록.length %2 === 1){ // 길이 홀수면 아웃안한거
         
-            answer.push(최대시간-result[0])
-            result.shift()
-        } if(result.length %2 === 0){ //짝수면 짝수요소 -홀수요소값을 answer에 넣어줘야한다
-            while(result.length > 0){
-                answer.push(result[0]-result[1])
-                result.shift()
-                result.shift()
+            누적주차시간.push(최대시간-출입기록[0])
+            출입기록.shift()
+        } if(출입기록.length %2 === 0){ //짝수면 짝수요소 -홀수요소값을 answer에 넣어줘야한다
+            while(출입기록.length > 0){
+                누적주차시간.push(출입기록[0]-출입기록[1])
+                출입기록.shift()
+                출입기록.shift()
             }
         }
-        let 누적주차시간 = answer.reduce((acc,cur) => acc + cur)
-    if(누적주차시간 < 기본시간){
-        lastanswer.push(기본요금)
+    if(누적주차시간.reduce((acc,cur) => acc + cur) < 기본시간){
+        answer.push(기본요금)
     }else{
-        lastanswer.push(
-기본요금 + Math.ceil((누적주차시간 - 기본시간) / 단위시간) * 단위요금 )
+        answer.push(
+기본요금 + Math.ceil((누적주차시간.reduce((acc,cur) => acc + cur) - 기본시간) / 단위시간) * 단위요금 )
     }   
-        answer = []
+        누적주차시간 = []
     }
    
-    return lastanswer
+    return answer
 }
