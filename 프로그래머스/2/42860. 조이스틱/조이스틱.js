@@ -15,18 +15,18 @@ function solution(name) {
   let min_move = name.length - 1;
 
   [...name].map((n, i) => {
-    answer += Math.min(n.charCodeAt() - 65, 91 - n.charCodeAt());
-    let idx = i + 1;
+    answer += Math.min(n.charCodeAt() - 65, 91 - n.charCodeAt()); // 상하 조작수 계산
+    let 에이갯수 = i + 1;
 
     // 연속되는 A의 개수 count
-    while (idx < name.length && name[idx] === 'A') {
-      idx++;
+    while (에이갯수 < name.length && name[에이갯수] === 'A') { //다음 알파벳이 A이면 인덱스에 ++해준다
+      에이갯수++;
     }
 
     min_move = Math.min(
-      min_move,
-      i * 2 + name.length - idx,
-      i + 2 * (name.length - idx),
+      min_move, // 정방향
+      i * 2 + name.length - 에이갯수, // A를 만나기전까지 이동했던 거리 왕복 + (정방향 이동횟수 - 연속된 A갯수) 
+      i + 2 * (name.length - 에이갯수), // "AABBBBB"
     );
   });
 
