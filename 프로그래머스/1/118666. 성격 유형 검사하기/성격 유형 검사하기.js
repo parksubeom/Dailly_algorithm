@@ -1,6 +1,7 @@
 function solution(survey, choices) {
     // 점수가 4보다 낮으면 survey[i][0]가 해당 성격유형이고 Math.abs(해당점수 - 4)라는 점수가 할당된다.
-    //이러한 성격유형과 할당점수를 score라는 변수에 할당하고, score를 순회하여 mbti.score[i][0] = mbti.score[i][1] 을 할당한다.
+    //survey[i] 와 choice[i] 는 대치된다. ex.choice[i] = 5 라면 i번째 지표는 약간동의이다.
+    // 할당된 점수와 성격유형을 mbti에 할당한다.
     let mbti = {R:0,T:0,C:0,F:0,J:0,M:0,A:0,N:0}
     let arr = [["R","T"],["C","F"],["J","M"],["A","N"]]
     let answer = ''
