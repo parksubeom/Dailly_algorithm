@@ -15,18 +15,19 @@ const input = require("fs")
 2.다음도시의 기름값이 현재도시의 기름값보다 비싸다면, 앞으로의 도시들 중 현재도시보다 싼 기름값을 가진 도시까지의 거리를 계산 후 
 해당 거리만큼 주유해서간다.
 */
-let N = input[0].map(Number);
-let total = input[1].map(Number).reduce((x, y) => x + y, 0);
-let km = input[1].map(Number);
-let city = input[2].map(Number);
-let oil = 0;
+let total = input[1]
+  .map((el) => BigInt(el))
+  .reduce((x, y) => BigInt(x) + BigInt(y), 0);
+let km = input[1].map((el) => BigInt(el));
+let city = input[2].map((el) => BigInt(el));
+let oil = 0n;
+let minprice = BigInt(city[0]);
 let i = 0;
-let minprice = city[0];
 //키
 //
-while (total !== 0) {
+while (total !== 0n) {
   if (minprice <= city[i + 1]) {
-    // 최저가가 다음 도시보다 싸다면 계쏙 최저가로 주유한다.
+    // 최저가가 다음 도시보다 싸다면 계속 최저가로 주유한다.
     oil += minprice * km[i];
     total -= km[i];
   } else if (minprice >= city[i + 1]) {
@@ -37,4 +38,4 @@ while (total !== 0) {
   }
   i++;
 }
-console.log(oil);
+console.log(oil.toString());
