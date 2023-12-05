@@ -33,18 +33,16 @@ rl.on("close", () => {
   let 몸무게 = 0;
   let 키 = 1;
   for (let i = 0; i < input.length; i++) {
-    let cnt = 0;
+    let cnt = 1;
     for (let x = 0; x < input.length; x++) {
-      if (i !== x) {
-        if (
-          input[i][몸무게] < input[x][몸무게] &&
-          input[i][키] < input[x][키]
-        ) {
-          cnt++;
-        }
+      if (input[i][몸무게] < input[x][몸무게] && input[i][키] < input[x][키]) {
+        // 나보다 큰 녀석이 있을 때 마다 내위에 몇명있는지 cnt해준다
+        // 내위에 아무도 없다면 초기의 cnt 그대로 가기때문에 1등이다.
+
+        cnt++;
       }
     }
-    result.push(cnt + 1);
+    result.push(cnt);
   }
   console.log(result.join(" "));
 });
