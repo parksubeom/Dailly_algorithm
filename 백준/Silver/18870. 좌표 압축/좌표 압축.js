@@ -1,0 +1,44 @@
+const readline = require("readline");
+const fs = require("fs");
+const { start } = require("repl");
+
+const rl = readline.createInterface({
+  input:
+    process.platform === "linux"
+      ? process.stdin
+      : fs.createReadStream("input.txt"),
+  output: process.stdout,
+  terminal: false,
+});
+
+let inputLines = [];
+
+rl.on("line", (line) => {
+  inputLines.push(line);
+});
+/*
+덩치
+
+
+키포인트
+완벽하게 본인보다 덩치가 큰 사람들의 수를 카운트한다
+*/
+
+rl.on("close", () => {
+  const input = inputLines
+    .slice(1)
+    .map((el) => el.split(" "))
+    .map((el) => el.map((el) => +el))
+    .flat();
+
+  let sort = [...new Set([...input].sort((a, b) => a - b))];
+  let result = [];
+  let dic = {};
+  sort.forEach((el, idx) => {
+    dic[el] = idx;
+  });
+  input.forEach((el) => {
+    result.push(dic[el]);
+  });
+  console.log(result.join(" "));
+});
