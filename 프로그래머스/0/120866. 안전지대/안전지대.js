@@ -2,36 +2,32 @@
 
 
 function solution(board) {
-const rows = board.length;
-const cols = board[0].length;
-
-// 복사본을 만들어서 원본 배열을 변경하지 않도록 합니다.
-const updatedBoard = board.map(row => row.slice());
-
-// 방향 배열을 정의합니다 (상하좌우 및 대각선).
-const directions = [
-  [-1, -1], [-1, 0], [-1, 1], // 위-왼쪽, 위, 위-오른쪽
-  [0, -1],           [0, 1],   // 왼쪽, 오른쪽
-  [1, -1], [1, 0], [1, 1]      // 아래-왼쪽, 아래, 아래-오른쪽
-];
-
-// 1의 위치를 찾아서 그 주변 요소를 업데이트합니다.
-board.forEach((row, r) => {
-  row.forEach((value, c) => {
-    if (value === 1) {
-      // 주변 요소를 업데이트합니다.
-      directions.forEach(([dr, dc]) => {
-        const nr = r + dr;
-        const nc = c + dc;
-        
-        // 배열의 범위를 벗어나지 않는지 확인합니다.
-        if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
-          updatedBoard[nr][nc] = 1;
-        }
-      });
+    /*
+    1. 보드를 순회한다.
+    2. 보드의 요소 중 1 을 포함한 요소의 인덱스를 찾는다.
+    3. 1을 포함한 요소에서 1이 몇번째 인덱스에 있는지 찾는다.
+    4.1이 위치한 인덱스와 앞뒤인덱스 번호를 
+    */
+    function findOne (element) {
+    if(element === 1){
+        return true
     }
-  });
-});
+}
+    let x = []
+    let y = []
+    board.forEach((el,idx) => {
+        if(el.find(findOne)){
+            y.push(idx-1,idx,idx+1)
+            y = [...new Set(y.filter((el) => el>=0 && el < board.length))];
+            x.push(el.reduce((acc,cur,idx) => {
+                if(cur === 1){
+                    acc.push(idx-1,idx,idx+1)
+                }
+                return  [...new Set(acc.filter((ele) => ele>=0 && ele < el.length))]
+            },[])) 
+        }
+    })
+    console.log(y)
+    return console.log(x)
 
-return updatedBoard.flat().filter((el) => el === 0).length
 }
